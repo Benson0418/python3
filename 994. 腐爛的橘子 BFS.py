@@ -1,17 +1,18 @@
+from collections import deque
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
       R=len(grid)
       C=len(grid[0])
       direction=[(1,0),(-1,0),(0,1),(0,-1)]
       time=-1
-      queue=[]
+      queue=deque()
       for i in range(R):
         for j in range(C):
           if grid[i][j]==2:
             queue.append([i,j])
       while queue:
         for _ in range(len(queue)):
-          x,y=queue.pop(0)
+          x,y=queue.popleft()
           for a,b in direction:
             tempx=x+a
             tempy=y+b
