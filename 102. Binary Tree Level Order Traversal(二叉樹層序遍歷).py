@@ -11,17 +11,17 @@ class Solution:
             return []
         res=[]
         temp=[]
-        path=deque([root])
+        queue=deque([root])
         def bfs(root):
-            nonlocal res,temp,path
-            while path:
-                for _ in range(len(path)):
-                    new=path.popleft()
+            nonlocal res,temp,queue
+            while queue:
+                for _ in range(len(queue)):
+                    new=queue.popleft()
                     temp.append(new.val)
                     if new.left:
-                        path.append(new.left)
+                        queue.append(new.left)
                     if new.right:
-                        path.append(new.right)
+                        queue.append(new.right)
                 res.append(temp)
                 temp=[]
         bfs(root)
