@@ -1,4 +1,4 @@
-class Solution:
+class Solution: # 初稿
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         n=len(nums)
         queue=deque()
@@ -26,3 +26,33 @@ class Solution:
                 queue.popleft()
             res.append(queue[0][0])
         return res
+
+# 更好的解，選自leetcode
+"""
+def maxSlidingWindow(nums: List[int], k: int) -> List[int]:
+    k -= 1
+    if k :
+
+        dq = deque()
+        a,p,pl = dq.append,dq.pop,dq.popleft
+
+        for j in range(0,k) :
+            v = nums[j]
+            while dq and nums[dq[-1]] <= v :
+                p()
+            a(j)
+
+        for j in range(k,len(nums)) :
+            v = nums[j]
+            while dq and nums[dq[-1]] <= v :
+                p()
+            a(j)
+            if dq[0] > j - k :
+                nums[j - k] = nums[dq[0]]
+            else :
+                pl()
+
+        del nums[-k:]
+
+    return nums
+"""
