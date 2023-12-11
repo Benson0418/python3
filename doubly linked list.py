@@ -72,7 +72,7 @@ class DoublyLinkedList:
         self.head=None
         self.tail=None
 
-    def popindex(self, idx): #idx>0
+    def popindex(self, idx): #idx>=0
         curr=self.head
         for i in range(idx):
             if curr.next is None:
