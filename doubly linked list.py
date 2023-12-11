@@ -72,23 +72,57 @@ class DoublyLinkedList:
         self.head=None
         self.tail=None
 
-    def popindex(self, idx):
+    def popindex(self, idx): #idx>0
         curr=self.head
         for i in range(idx):
             if curr.next is None:
                 raise IndexError("index out of range")
             curr=curr.next
-        pass
+        res=curr.val
+        if idx==0:
+            self.head=self.head.next
+            if self.head:
+                self.head.pre=None
+        else:
+            curr.pre.next=curr.next
+            curr=curr.pre
+            if curr.next:
+                curr.next.pre=curr.pre
+        return res
     
     def index(self, idx):
-        pass
+        curr=self.head
+        for i in range(idx):
+            if curr.next is None:
+                raise IndexError("index out of range")
+            curr=curr.next
+        return curr.val
 
-    def delete(self, value):
-        pass
+    def remove(self, value):
+        curr = self.head
+        while curr:
+            if curr.val == value:
+                if curr.pre is None:
+                    if curr.next:
+                        self.head = curr.next
+                        self.head.pre = None
+                    else:
+                        self.head = None
+                        self.tail = None
+                else:
+                    curr.pre.next = curr.next
+                    if curr.next:
+                        curr.next.pre = curr.pre
+                return
+            curr = curr.next
 
     def reverse(self):
-        pass
-
+        self.head,self.tail=self.tail,self.head
+        curr=self.head
+        while curr:
+            curr.pre,curr.next=curr.next,curr.pre
+            curr=curr.next
+        
     def getlength(self):
         curr=self.head
         res=0
@@ -99,15 +133,18 @@ class DoublyLinkedList:
 
 DLL=DoublyLinkedList()
 DLL.append(Node(5))
+DLL.remove(5)
+print(DLL)
+DLL.append(Node(5))
+print(DLL)
 DLL.append(Node(4))
 DLL.append(Node(9))
 DLL.append(Node(13))
+DLL.append(Node(19))
+DLL.append(Node(21))
 DLL.preappend(Node(15))
-print(DLL.pop())
-print(DLL.prepop())
-print(DLL.head.val)
-print(DLL.tail.val)
 print(DLL)
-print(DLL.getlength())
-DLL.clear()
+DLL.reverse()
 print(DLL)
+
+
