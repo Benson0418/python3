@@ -26,7 +26,7 @@ T=int(input())
 L=[int(x) for x in input().split()]
 maxL=max(L)
 
-base_matrix=[[[0,1,0],[p,q,1],[0,0,1]]]
+base_matrix=[[[0,1,0],[q,p,1],[0,0,1]]]
 matrix_fast_exp(floor(log2(maxL-1)))
 
 for i in L:
