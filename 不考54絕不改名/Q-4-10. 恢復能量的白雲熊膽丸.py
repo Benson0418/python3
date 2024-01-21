@@ -19,7 +19,6 @@ while left<right:
         right=mid
     else:
         left=mid+1
-print(greedy(7,m))
 
 print(right)
 
