@@ -2,7 +2,7 @@
 n,m=map(int,input().split())
 V=[int(x) for x in input().split()]
 
-parent=[i for i in range(n)]
+parent=list(range(n))
 
 def find(A):
     if A!=parent[A]:
@@ -11,9 +11,9 @@ def find(A):
 
 def union(A,B):
     pA,pB=find(A),find(B)
-    if parent[pA]==parent[pB]:return
-    parent[pB]=parent[pA]
-    V[pA]+=V[pB]
+    if parent[pA]!=parent[pB]:
+        parent[pB]=parent[pA]
+        V[pA]+=V[pB]
     
 for _ in range(m):
     union(*map(int,input().split()))
